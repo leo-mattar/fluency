@@ -6,52 +6,22 @@ document.addEventListener("DOMContentLoaded", function () {
     trialWarn: false,
   });
 
-  //   // --- GLOBAL FADE
-  //   function fade() {
-  //     const fadeElements = document.querySelectorAll("[fade]");
-
-  //     gsap.set(fadeElements, { opacity: 0, y: "5em" });
-
-  //     ScrollTrigger.batch("[fade]", {
-  //       once: true,
-  //       onEnter: batch =>
-  //         gsap.to(batch, {
-  //           opacity: 1,
-  //           y: 0,
-  //           duration: 1.2,
-  //           ease: "power3.out",
-  //           stagger: 0.1,
-  //         }),
-  //     });
-  //   }
-
   // --- GLOBAL FADE
   function fade() {
     const fadeElements = document.querySelectorAll("[fade]");
 
-    fadeElements.forEach(el => {
-      const settings = { opacity: 0 };
-      if (!el.hasAttribute("no-transform")) {
-        settings.y = "5em";
-      }
-      gsap.set(el, settings);
-    });
+    gsap.set(fadeElements, { opacity: 0, y: "5em" });
 
     ScrollTrigger.batch("[fade]", {
       once: true,
-      onEnter: batch => {
-        batch.forEach(el => {
-          const animation = {
-            opacity: 1,
-            duration: 1.2,
-            ease: "power3.out",
-          };
-          if (!el.hasAttribute("no-transform")) {
-            animation.y = 0;
-          }
-          gsap.to(el, animation);
-        });
-      },
+      onEnter: batch =>
+        gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          stagger: 0.1,
+        }),
     });
   }
 
@@ -65,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
       speed: 600,
       simulateTouch: false,
       effect: "fade",
+      autoHeight: true,
       fadeEffect: {
         crossFade: true,
       },
